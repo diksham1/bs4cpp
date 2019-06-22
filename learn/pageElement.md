@@ -1,3 +1,18 @@
+# `parents`
+    
+    - loop through changing i = i.parent as long i is not None
+    - keep yielding i in between
+
+---
+
+# `next_elements`, `previous_siblings` and `next_siblings` 
+
+    - loop through changing i to i.next_sibling as long as i is not None
+    - keep yielding the i's obtained
+   **returns**: yeilds the i at each step 
+
+---
+
 # `insert_after(arguments)`
 
     - same as inserting the list of arguments at the index of self + 1
