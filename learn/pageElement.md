@@ -1,8 +1,9 @@
 # `parents`
     
     - loop through changing i = i.parent as long i is not None
-    - keep yielding i in between
-   **returns**: yields i at each step
+    - keep yielding the i's obtained
+   **returns**: yields the i at each step
+
 ---
 
 # `next_elements`, `previous_siblings` and `next_siblings` 
