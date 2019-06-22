@@ -1,3 +1,10 @@
+# `insert `
+
+    - Just like insertion in a linked list
+    - change previous and next siblings and elements
+   **returns**: nothing
+
+---
 # ` replace_with `
 
     - Store the index of the the object
