@@ -38,8 +38,7 @@
     1. if next_sibling is not none, last child is the previous element of the next_sibling
     2. else keep on replacing last child with the last element in the list of last.contents, it will always replace last child with last of it's children
     3. When no longer possible to do so, we have found the last descendant.
-    4. **returns**: last child
-
+   **returns**: last child
 
 ---
 
