@@ -1,4 +1,4 @@
-`insert_after(arguments)`
+# `insert_after(arguments)`
 
     - same as inserting the list of arguments at the index of self + 1
     - iteratively insert all the elements + offset
@@ -6,7 +6,7 @@
 
 ---
 
-`insert_before(arguments)`
+# `insert_before(arguments)`
 
     - same as inserting the list of arguments at the index of self. 
     - iteratively insert the elements at the index of self
