@@ -1,3 +1,18 @@
+# `Extend`
+    
+    - appends a set of tags to the object
+    - calls append internally for each tag in the taglist
+   **returns**:  nothing 
+
+---
+
+# `Append`
+    
+    - Insertion at the last position
+    - last position = len(self.contents)
+   **returns**: nothing
+
+---
 # `insert `
 
     - Just like insertion in a linked list
