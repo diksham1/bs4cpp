@@ -1,4 +1,4 @@
-*`replace_with`*
+`replace_with`
 
     1. Store the index of the parent 
     2. Extract the child
