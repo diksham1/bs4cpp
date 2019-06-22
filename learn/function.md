@@ -1,3 +1,18 @@
+`insert_after(arguments)`
+
+    - same as inserting the list of arguments at the index of self + 1
+    - iteratively insert all the elements + offset
+   **returns**: nothing
+
+---
+
+`insert_before(arguments)`
+
+    - same as inserting the list of arguments at the index of self. 
+    - iteratively insert the elements at the index of self
+   **returns**: nothing 
+
+---
 # `Extend`
     
     - appends a set of tags to the object
