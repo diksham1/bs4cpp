@@ -32,3 +32,13 @@
    **returns**: self
 
 ---
+
+# `_last_descendant`
+
+    1. if next\_sibling is not none, last child is the previous element of the next\_sibling
+    2. else keep on replacing last child with the last element in the list of last.contents, it will always replace last child with last of it's children
+    3. When no longer possible to do so, we have found the last descendant
+   **returns**: last child
+---
+
+
