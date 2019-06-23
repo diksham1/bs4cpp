@@ -1,3 +1,60 @@
+# `__eq__`
+
+    - a tag is equal to another if name, attributes and contents (recursively) are same
+   **returns**: boolean value True or False
+
+--- 
+
+# `has_attr(key)`
+    
+    - return true if the key is in the self.attrs dictionary
+   **returns**: boolean value obtained above 
+    
+---
+
+# `get_attribute_list`
+    
+    - same as get(), but always returns a list
+    - instead of returning the value directly
+        wrap into a list and then return
+   **returns**: list containing the value  
+
+---
+
+# `get(key)`
+
+    - self.attrs gives the dictionary of the object attributes
+    - use the dictionary method get to get the key value
+   **returns**: the key value
+
+---
+
+# `index(element)`
+
+    - enumerate over self.contents
+    - if child is the element needed, return i
+   **returns**: i if the element if found, else Exception
+
+---
+
+# `clear`
+    
+    - if decompose is true, decompose
+    - else extract all the children
+   **returns**: nothing
+
+---
+
+# `decompose()`
+
+    - extract the tag first
+    - iterate over the next elements (i)
+    - assign null to them and clear their dictionaries
+    - do this till i is not None
+   **returns**: nothing 
+
+---
+
 # `get_text`
 
     - get all child strings concatenated using the given separator
