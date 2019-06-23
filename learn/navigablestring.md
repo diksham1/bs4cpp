@@ -20,4 +20,19 @@
 
 ---
 
+# `output_ready`
 
+    - returns the string name with prefix and suffix
+    - by default Prefix and suffix are ' '
+    - only in class CData etc prefix and suffix are returned
+   **returns**: string name with prefix and suffix
+
+---
+
+*Children:* 
+
+    - Comment
+    - XML processing instruction
+    - Preformatted String
+    - Declaration
+    - Doctype
