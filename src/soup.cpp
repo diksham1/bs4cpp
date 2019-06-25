@@ -24,26 +24,40 @@ class bs4cpp {
         }
             
         auto find_all (string requiredTagName) {
-            tree <Node> dom = this -> dom;
-            auto start = dom.begin();
-            
-            vector<decltype(start)> filteredNodes;
-            dfs(start, requiredTagName, filteredNodes);
-            return filteredNodes;
+            tree <Node> domtree = this -> dom;
+            auto datatypeptr = make_pair(dom.begin(), dom.begin());
+            vector<decltype(datatypeptr)> filteredNodes;
+    //      dfs2(domtree);
+            dfs(domtree, requiredTagName, filteredNodes);
+     /*       for (auto p: filteredNodes) {
+                auto start = p.first; 
+                auto last = p.second;
+                cout << start -> text() <<' ' << last ->text() << endl;
+            }
+       */     return filteredNodes;
         }
 
-        void dfs (auto source, string requiredTagName, auto & filteredNodes) {
-                auto start = source;
-                auto end = source;
-                if (source->tagName() == requiredTagName) {
-                    end = dom.next_sibling(source);
-                    filteredNodes.push_back(start);
+        void dfs (tree<Node>  domtree, string requiredTagName, auto & filteredNodes) {
+                auto start = domtree.begin();
+                auto last = domtree.begin();
+                if (start -> tagName() == requiredTagName) {
+                    last = domtree.next_sibling(start);
+            //        last--;
+                    filteredNodes.push_back(make_pair(start, last));
+            //        cout << start -> text() << ' ' << last->text() << endl;
+                    cout << filteredNodes.size() << endl;
+                    
+                    for (auto p: filteredNodes) {
+                        auto start = p.first; 
+                        auto last = p.second;
+                      cout << start -> text() <<' ' << last ->text() << endl;
+                    }
                 }
-                for (int i = 0; i < dom.number_of_children(start); i++) {
-                    dfs(dom.child(source, i), requiredTagName, filteredNodes);
+                for (int i = 0; i < domtree.number_of_children(start); i++) {
+                    dfs(domtree.child(start, i), requiredTagName, filteredNodes);
                 }
         }
-   
+  
         void prettify() {
             int space = 0;
             this -> prettyprint(space, this -> dom);
@@ -54,34 +68,22 @@ class bs4cpp {
 
   
 int main() {
-  //Parse some html code
  string html = "<html><head><title>Hi</title></head><body><p>I</p>  \
-    <p><b>Hate</b></p><p>you so much</p><br><a href='test' col='6'>S</a></body></html>";
-  //Print whole DOM tree
-//  std::cout << dom << std::endl;
-    int space = 0;    
+    <p>ok<p><b>Hate</b></p></p><p>you so much</p><br><a href='test' col='6'>S</a></body></html>";
     bs4cpp obj(html);
     obj.prettify();
-//    auto aitems = obj.find_all("a");
+
     auto pitems = obj.find_all("p");
 
     for (auto it : pitems) {
-        cout << *it << endl;
-        auto next_sibl = obj.dom.next_sibling(it);
-        while (it != next_sibl) {
-            cout << it->text() << endl;
-            it++;
+        auto start = it.first;
+        auto last = it.second;
+        while (start != last) {
+            cout << start -> text();;
+            start++;
         }
+        cout << endl;;       
     }
-
-  /*  for (auto nodelist : pitems) {
-        for (auto node: nodelist) {
-            cout << node <<endl;
-        }
-        cout << endl;
-    }
-
-*/
     return 0;
 }
 
