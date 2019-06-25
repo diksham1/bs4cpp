@@ -6,11 +6,11 @@ using namespace htmlcxx;
 
 int main() {
     HTML::ParserDom parser;   
-    string html = "<html><body><br><a href='sikha'>hey</a></body></html>"; 
+    string html = "<html><body><br><a href='sikha'>hey i am a girl</a></body></html>"; 
     tree<HTML::Node> dom = parser.parseTree(html);
     auto start = dom.begin();
     auto end = dom.end();
-
+    cout << typeid(start).name() << endl;
     while(start != end) {
         if (start -> isTag()) {
             cout <<"Tag found \n";
