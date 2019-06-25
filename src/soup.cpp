@@ -1,9 +1,10 @@
 #include "htmlcxx/html/ParserDom.h"
 #include <bits/stdc++.h>  
-#include "helperfunc.h"
 
 using namespace std;
 using namespace htmlcxx;
+
+#include "helperfunc.h"
 
 class bs4cpp {
     public:
@@ -23,9 +24,10 @@ class bs4cpp {
 
             while (start != end) {
                 string tag = start -> text();
+                cout << *start <<endl;
                 if (tag == "<title>") {
                     start++;
-                    string my_text = start -> text();
+                    string s = start -> text();
                     s = trimWhitespace(s);
                     while( s == "") {
                         start++;
