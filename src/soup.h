@@ -2,6 +2,7 @@
 #include <iostream> 
 #include <regex> 
 #include "helperfunc.h"
+#include "PageElement.h"
 
 
 using namespace std;
@@ -11,7 +12,7 @@ using namespace htmlcxx::HTML;
 class Bs4cpp {
     public:
         tree<Node> dom;
-        vector<decltype(dom.begin())> contents;
+        vector<PageElement> contents;
       
         Bs4cpp(string html) {
             ParserDom parser;
@@ -20,7 +21,7 @@ class Bs4cpp {
         } 
             
         auto find_all (string requiredTagName, int limit = -1) {
-            vector<decltype(dom.begin())> filteredNodes;
+            vector<PageElement> filteredNodes;
             filterNodes(requiredTagName, filteredNodes, limit);
             return filteredNodes;
         }
@@ -30,9 +31,9 @@ class Bs4cpp {
         }
 
         void filterNodes(string requiredTagName, auto & filteredNodes, int limit) {
-            for (auto elementPtr: contents) {
-                if (elementPtr -> tagName() == requiredTagName) {
-                    filteredNodes.push_back(elementPtr);
+            for (auto element: contents) {
+                if (element.name() == requiredTagName) {
+                    filteredNodes.push_back(element);
                 }
             }
         }
@@ -42,14 +43,14 @@ class Bs4cpp {
             this -> prettyprint(space, this -> dom);
         }     
  
-        vector<decltype(dom.begin())> getContents() {
-            vector<decltype(dom.begin())> allElements;
+        vector<PageElement> getContents() {
+            vector<PageElement> allElements;
             auto startptr = dom.begin();
             auto endptr = dom.end();
             while (startptr != endptr) {
                 string tagText = trimWhitespace(startptr -> text());
                 if (tagText != "")
-                    allElements.push_back(startptr);
+                    allElements.push_back(PageElement(*startptr));
                 startptr++;
             }
             return allElements;
