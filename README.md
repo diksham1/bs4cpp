@@ -12,6 +12,7 @@ As of now, the functions completed are :
     - Find_all and find function
     - The contents member variable
     - The prettify function
+    - The parent function 
 
 
 
