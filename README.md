@@ -9,7 +9,7 @@ I will be using the HTMLCXX parser and the tree.h API. I'll implement the major 
 
 As of now, the functions completed are :
 
-    - Find\_all and find function
+    - Find_all and find function
     - The contents member variable
     - The prettify function
 
