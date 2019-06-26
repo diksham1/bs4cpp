@@ -1,7 +1,7 @@
 class PageElement { 
     htmlcxx::HTML::Node nodeElement;   
     tree<htmlcxx::HTML::Node>::iterator myIterator;
-    tree<htmlcxx::HTML::Node> myDom;
+    tree<htmlcxx::HTML::Node>* myDom;
 
     public:    
         std::map<std::string, std::string> attrs;  
@@ -19,11 +19,25 @@ class PageElement {
         }
         
         PageElement parent() {
-            auto parent_iterator = myDom.parent(myIterator);
+            auto parent_iterator = myDom->parent(myIterator);
             if (parent_iterator == NULL) 
                 parent_iterator = myIterator;
             return PageElement(*parent_iterator, parent_iterator, myDom);
         }
+
+       PageElement next_element() {
+            auto iteratorCurrentNode = myIterator;
+            std::string textCurrentNode  = "";      
+            auto endIterator = myDom -> end();
+
+            while (textCurrentNode == "" && ++iteratorCurrentNode != endIterator) {
+               textCurrentNode = trimWhitespace(iteratorCurrentNode -> text());
+            }        
+            if(iteratorCurrentNode == endIterator) {
+                iteratorCurrentNode = myIterator;
+            }   
+            return PageElement(*iteratorCurrentNode, iteratorCurrentNode, myDom);
+       }
         
 };
 

@@ -15,10 +15,7 @@ int main() {
 
     for (auto start : pitems) {
         cout <<"\ntag, parent is "<<start <<" " << start.parent() << endl; 
-        cout <<"Attributes are ";
-        for (auto it : start.attrs) {
-            cout << it.first <<" -> "<<it.second << endl;
-        }
+        cout <<"Next element is "<<start.next_element() << endl;
     }
     
     return 0;
