@@ -13,6 +13,6 @@ As of now, the functions completed are :
     - The contents member variable
     - The prettify function
     - The parent function 
-
+    - Attributes dictionary ready
 
 
