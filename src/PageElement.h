@@ -70,7 +70,17 @@ class PageElement {
             return PageElement(*prevSiblIterator, prevSiblIterator, myDom);
         }
 
-          
+        std::vector <PageElement> descendants() {
+            std::vector <PageElement> descendantList;
+            auto siblIterator = myDom -> begin(myIterator);
+            auto myChildCount = myDom -> number_of_children(myIterator);
+            for (auto i = 0; i < myChildCount; i++) {
+                PageElement myChild (*siblIterator, siblIterator, myDom);
+                descendantList.push_back(myChild);
+                siblIterator++;
+            } 
+            return descendantList;
+        }          
         
 };
 

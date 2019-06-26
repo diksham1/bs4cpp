@@ -14,8 +14,12 @@ int main() {
     auto pitems = obj.contents;
 
     for (auto start : pitems) {
-        cout <<"\ntag, previous sibling is "<<start <<" " << start.previous_sibling() << endl; 
-        cout <<"Next element is "<<start.previous_element() << endl;
+        if (start.name() != "body")    continue;
+        cout <<"Descendants of body are " << endl; 
+        auto descList = start.descendants();
+        for (auto x: descList) {
+            cout << x << endl;
+        }
     }
     
     return 0;
