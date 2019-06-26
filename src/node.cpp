@@ -9,12 +9,10 @@ using namespace htmlcxx::HTML;
 class bs4cpp {
     public:
         tree<Node> dom;
-        vector<decltype(dom.begin())> contents;
       
         bs4cpp(string html) {
             ParserDom parser;
             this -> dom = parser.parseTree(html);
-            this -> contents = getContents();
         } 
             
         auto find_all (string requiredTagName, int limit = -1) {
@@ -28,31 +26,40 @@ class bs4cpp {
         }
 
         void filterNodes(string requiredTagName, auto & filteredNodes, int limit) {
-            for (auto elementPtr: contents) {
-                if (elementPtr -> tagName() == requiredTagName) {
-                    filteredNodes.push_back(elementPtr);
+            auto currentNode = dom.begin();
+            auto lastNode = dom.end();
+            while (currentNode != lastNode  &&  limit) {
+                if (currentNode -> tagName() == requiredTagName) {
+                    filteredNodes.push_back(currentNode);
+                    limit--;
                 }
+                currentNode++;
             }
+        }
+        
+        auto getAllElements() {
+            vector<decltype(dom.begin())> allElements;
+            auto first = dom.begin();
+            auto last = dom.end();
+
+            while (first != last) {
+                cout << "at tag "<<first -> text() << endl;
+                allElements.push_back(first);
+                first++;
+            }
+            return allElements;
         }
   
         void prettify() {
             int space = 0;
             this -> prettyprint(space, this -> dom);
         }     
- 
-        vector<decltype(dom.begin())> getContents() {
-            vector<decltype(dom.begin())> allElements;
-            auto startptr = dom.begin();
-            auto endptr = dom.end();
-            while (startptr != endptr) {
-                string tagText = trimWhitespace(startptr -> text());
-                if (tagText != "")
-                    allElements.push_back(startptr);
-                startptr++;
-            }
-            return allElements;
-        }       
+        
         void prettyprint(int space, tree<Node> dom);
+
+ /*       auto contents() {
+            auto
+        }*/
 };
 
   
@@ -60,14 +67,14 @@ int main() {
  string html = "<html><head><title>Hi</title></head><body><p>I</p>  \
     <p>ok<p><b>Hate</b></p></p><p>you so much</p><br><a href='test' col='6'>S</a></body></html>";
     bs4cpp obj(html);
-//    obj.prettify();
+    obj.prettify();
 
-    auto pitems = obj.find_all("p");
+    auto pitems = obj.getAllElements();
 
     for (auto start : pitems) {
-        cout << start -> text() << endl; 
+        cout << start -> text() << endl;
+        cout << endl;;       
     }
-    
     return 0;
 }
 
