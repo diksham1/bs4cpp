@@ -13,6 +13,10 @@ class PageElement {
             nodeElement.parseAttributes();
             attrs = (nodeElement).attributes();
         }
+
+        bool isTag() {
+            return nodeElement.isTag();
+        }
         
         std::string name() {
             return (std::string)(nodeElement);

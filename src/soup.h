@@ -11,13 +11,15 @@ using namespace htmlcxx::HTML;
 
 class Bs4cpp {
     public:
-        tree<Node> dom;
-        vector<PageElement> contents;
-      
+        tree <Node> dom;
+        vector <PageElement> contents;
+        vector <string> strings;     
+
         Bs4cpp(string html) {
             ParserDom parser;
             this -> dom = parser.parseTree(html);
             this -> contents = getContents();
+            this -> strings = all_strings();
         } 
             
         auto find_all (string requiredTagName, int limit = -1) {
@@ -43,7 +45,7 @@ class Bs4cpp {
             this -> prettyprint(space, this -> dom);
         }     
  
-        vector<PageElement> getContents() {
+        vector<PageElement> getContents () {
             vector<PageElement> allElements;
             auto startptr = dom.begin();
             auto endptr = dom.end();
@@ -56,7 +58,25 @@ class Bs4cpp {
                 startptr++;
             }
             return allElements;
-        }       
+        }
+ 
+        vector <string> all_strings () {
+            vector <string> strings;
+            for (auto element: contents) {
+                if (element.isTag())    continue;
+                strings.push_back(element.name());
+            }
+            return strings;
+        }
+
+        string get_text() {
+            string allText = "";
+            for (auto str: strings) {
+                allText += str;
+            } 
+            return allText;
+        }
+      
         void prettyprint(int space, tree<Node> dom);
 };
 

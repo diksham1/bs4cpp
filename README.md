@@ -17,4 +17,4 @@ As of now, the functions completed are :
     - previous_sibling and next_sibling 
     - previous_element and next_element
     - descendant function added
-
+    - all_strings function and strings member variable
