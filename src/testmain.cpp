@@ -14,8 +14,11 @@ int main() {
     auto pitems = obj.contents;
 
     for (auto start : pitems) {
-        cout <<"tag, parent is "<<start <<" " << start.parent() << endl; 
-        cout << "Grandparent is "<<start.parent().parent() << endl;
+        cout <<"\ntag, parent is "<<start <<" " << start.parent() << endl; 
+        cout <<"Attributes are ";
+        for (auto it : start.attrs) {
+            cout << it.first <<" -> "<<it.second << endl;
+        }
     }
     
     return 0;
