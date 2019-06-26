@@ -14,7 +14,7 @@ int main() {
     auto pitems = obj.contents;
 
     for (auto start : pitems) {
-        cout <<"\ntag, parent is "<<start <<" " << start.parent() << endl; 
+        cout <<"\ntag, previous sibling is "<<start <<" " << start.previous_sibling() << endl; 
         cout <<"Next element is "<<start.next_element() << endl;
     }
     

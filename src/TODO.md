@@ -1,4 +1,4 @@
 **TODO**
 
     - Come with an alternate way to trim whitespace (regex is slow)
-    - next\_element() of the last element should be NULL. Figure out a way to do this
+    - next\_element(), previous\_sibling if does not exist will output the same value. Need to fix this.
