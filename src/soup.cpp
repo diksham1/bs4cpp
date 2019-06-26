@@ -23,39 +23,26 @@ class bs4cpp {
             return node.closingText();
         }
             
-        auto find_all (string requiredTagName) {
-            tree <Node> domtree = this -> dom;
-            auto datatypeptr = make_pair(dom.begin(), dom.begin());
-            vector<decltype(datatypeptr)> filteredNodes;
-    //      dfs2(domtree);
-            dfs(domtree, requiredTagName, filteredNodes);
-     /*       for (auto p: filteredNodes) {
-                auto start = p.first; 
-                auto last = p.second;
-                cout << start -> text() <<' ' << last ->text() << endl;
-            }
-       */     return filteredNodes;
+        auto find_all (string requiredTagName, int limit = -1) {
+            vector<decltype(dom.begin())> filteredNodes;
+            filterNodes(requiredTagName, filteredNodes, limit);
+            return filteredNodes;
         }
 
-        void dfs (tree<Node>  domtree, string requiredTagName, auto & filteredNodes) {
-                auto start = domtree.begin();
-                auto last = domtree.begin();
-                if (start -> tagName() == requiredTagName) {
-                    last = domtree.next_sibling(start);
-            //        last--;
-                    filteredNodes.push_back(make_pair(start, last));
-            //        cout << start -> text() << ' ' << last->text() << endl;
-                    cout << filteredNodes.size() << endl;
-                    
-                    for (auto p: filteredNodes) {
-                        auto start = p.first; 
-                        auto last = p.second;
-                      cout << start -> text() <<' ' << last ->text() << endl;
-                    }
+        auto find (string requiredTagName, int limit = 1) {
+            return find_all(requiredTagName, limit);
+        }
+
+        void filterNodes(string requiredTagName, auto & filteredNodes, int limit) {
+            auto currentNode = dom.begin();
+            auto lastNode = dom.end();
+            while (currentNode != lastNode  &&  limit) {
+                if (currentNode -> tagName() == requiredTagName) {
+                    filteredNodes.push_back(currentNode);
+                    limit--;
                 }
-                for (int i = 0; i < domtree.number_of_children(start); i++) {
-                    dfs(domtree.child(start, i), requiredTagName, filteredNodes);
-                }
+                currentNode++;
+            }
         }
   
         void prettify() {
@@ -73,13 +60,12 @@ int main() {
     bs4cpp obj(html);
     obj.prettify();
 
-    auto pitems = obj.find_all("p");
+    auto pitems = obj.find("p");
 
-    for (auto it : pitems) {
-        auto start = it.first;
-        auto last = it.second;
-        while (start != last) {
-            cout << start -> text();;
+    for (auto start : pitems) {
+        auto lastChild = obj.dom.next_sibling(start);
+        while (start != lastChild) {
+            cout << start -> text() << endl;
             start++;
         }
         cout << endl;;       
