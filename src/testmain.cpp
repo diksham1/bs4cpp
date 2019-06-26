@@ -14,7 +14,7 @@ int main() {
     auto pitems = obj.contents;
 
     for (auto start : pitems) {
-        if (start.name() != "body")    continue;
+        if (start.name() != "Hi")    continue;
         cout <<"Descendants of body are " << endl; 
         auto descList = start.descendants();
         for (auto x: descList) {

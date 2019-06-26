@@ -16,5 +16,5 @@ As of now, the functions completed are :
     - Attributes dictionary ready
     - previous_sibling and next_sibling 
     - previous_element and next_element
-
+    - descendant function added
 
