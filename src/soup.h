@@ -1,17 +1,19 @@
 #include "htmlcxx/html/ParserDom.h"
-#include <bits/stdc++.h>  
+#include <iostream> 
+#include <regex> 
+#include "helperfunc.h"
+
 
 using namespace std;
 using namespace htmlcxx::HTML;
 
-#include "helperfunc.h"
 
-class bs4cpp {
+class Bs4cpp {
     public:
         tree<Node> dom;
         vector<decltype(dom.begin())> contents;
       
-        bs4cpp(string html) {
+        Bs4cpp(string html) {
             ParserDom parser;
             this -> dom = parser.parseTree(html);
             this -> contents = getContents();
@@ -55,24 +57,7 @@ class bs4cpp {
         void prettyprint(int space, tree<Node> dom);
 };
 
-  
-int main() {
- string html = "<html><head><title>Hi</title></head><body><p>I</p>  \
-    <p>ok<p><b>Hate</b></p></p><p>you so much</p><br><a href='test' col='6'>S</a></body></html>";
-    bs4cpp obj(html);
-//    obj.prettify();
-
-    auto pitems = obj.find_all("p");
-
-    for (auto start : pitems) {
-        cout << start -> text() << endl; 
-    }
-    
-    return 0;
-}
-
-
-void bs4cpp::prettyprint(int space, tree<Node> dom) {
+void Bs4cpp::prettyprint(int space, tree<Node> dom) {
     auto it = dom.begin();
 
     string line = "";

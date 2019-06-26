@@ -1,4 +1,0 @@
-class Tag {
-    protected:
-        
-};

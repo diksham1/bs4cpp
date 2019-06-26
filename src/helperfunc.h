@@ -1,7 +1,6 @@
-/*#ifndef __HELPER__
-#define __HELPER__
-*/
-string trimWhitespace(string s) {
+#include <iostream>
+
+std::string trimWhitespace(std::string s) {
     s = std::regex_replace(s, std::regex("\\s+"), "");
     return s;
 }
