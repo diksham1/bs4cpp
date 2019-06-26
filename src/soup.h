@@ -49,8 +49,10 @@ class Bs4cpp {
             auto endptr = dom.end();
             while (startptr != endptr) {
                 string tagText = trimWhitespace(startptr -> text());
-                if (tagText != "")
-                    allElements.push_back(PageElement(*startptr));
+                if (tagText != "") {
+                    auto my_iterator = startptr;        
+                    allElements.push_back(PageElement(*startptr, my_iterator, dom));
+                }
                 startptr++;
             }
             return allElements;

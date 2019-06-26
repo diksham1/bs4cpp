@@ -1,10 +1,13 @@
 class PageElement { 
     htmlcxx::HTML::Node nodeElement;   
-    htmlcxx::HTML::Node parentNode;
+    tree<htmlcxx::HTML::Node>::iterator myIterator;
+    tree<htmlcxx::HTML::Node> myDom;    
     
     public:
-        PageElement(htmlcxx::HTML::Node node) {
+        PageElement(htmlcxx::HTML::Node node, auto myIterator, auto myDom) {
             this -> nodeElement = node;
+            this -> myIterator = myIterator;
+            this -> myDom = myDom;
         }
         std::string name() {
             return (std::string)(nodeElement);
@@ -13,10 +16,10 @@ class PageElement {
             return nodeElement.tagName();
         }
         PageElement parent() {
-            return parentNode;
-        }
-        PageElement setParent(htmlcxx::HTML::Node myParent) {
-            parentNode = myParent;
+            auto parent_iterator = myDom.parent(myIterator);
+            if (parent_iterator == NULL) 
+                parent_iterator = myIterator;
+            return PageElement(*parent_iterator, parent_iterator, myDom);
         }
 };
 
