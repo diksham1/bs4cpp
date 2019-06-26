@@ -15,7 +15,7 @@ int main() {
 
     for (auto start : pitems) {
         cout <<"\ntag, previous sibling is "<<start <<" " << start.previous_sibling() << endl; 
-        cout <<"Next element is "<<start.next_element() << endl;
+        cout <<"Next element is "<<start.previous_element() << endl;
     }
     
     return 0;

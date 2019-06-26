@@ -38,6 +38,21 @@ class PageElement {
             }   
             return PageElement(*iteratorCurrentNode, iteratorCurrentNode, myDom);
         }
+        
+        PageElement previous_element() {
+            auto iteratorCurrentNode = myIterator;
+            std::string textCurrentNode  = "";      
+            auto endIterator = myDom -> begin();
+            endIterator--;
+
+            while (textCurrentNode == "" && --iteratorCurrentNode != endIterator) {
+               textCurrentNode = trimWhitespace(iteratorCurrentNode -> text());
+            }        
+            if(iteratorCurrentNode == endIterator) {
+                iteratorCurrentNode = myIterator;
+            }   
+            return PageElement(*iteratorCurrentNode, iteratorCurrentNode, myDom);
+        }
 
         PageElement previous_sibling() {
             auto prevSiblIterator = myDom -> previous_sibling(myIterator);
@@ -46,6 +61,16 @@ class PageElement {
             }
             return PageElement(*prevSiblIterator, prevSiblIterator, myDom);
         }
+        
+        PageElement next_sibling() {
+            auto prevSiblIterator = myDom -> next_sibling(myIterator);
+            if (prevSiblIterator == NULL) {
+                prevSiblIterator = myIterator;
+            }
+            return PageElement(*prevSiblIterator, prevSiblIterator, myDom);
+        }
+
+          
         
 };
 
