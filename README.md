@@ -16,5 +16,6 @@ As of now, the functions completed are :
     - Attributes dictionary ready
     - previous_sibling and next_sibling 
     - previous_element and next_element
-    - descendant function added
+    - descendants and last_descendant function 
     - all_strings function and strings member variable
+    - get_text function
