@@ -15,6 +15,10 @@ class PageElement {
         std::map<std::string, std::string> attrs() {
             return  myIterator -> attributes();
         }
+
+        void clear() {
+            myDom -> erase_children(myIterator);
+        }
         
         void setAttr(std::string key, std::string value) {
             auto attrs = myIterator -> attributes();
