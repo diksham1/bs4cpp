@@ -16,9 +16,23 @@ class Bs4cpp {
         Bs4cpp(string html) {
             ParserDom parser;
             this -> dom = parser.parseTree(html);
+            auto start = dom.begin();
+            auto end = dom.end();
+            while (start != end) {
+                if (start -> isTag()) {
+                    start -> text(lower(trimWhitespace(start -> text())));
+                    start -> tagName(lower(trimWhitespace(start -> tagName())));
+                } else { 
+                    start -> text(trimWhitespace(start -> text()));
+                    start -> tagName(trimWhitespace(start -> tagName()));
+                }
+                start -> closingText(lower(start -> closingText()));
+                start++;
+            }
         } 
 
         PageElement new_tag (string tagname) {
+            tagname = lower(tagname);
             Node newNode;
             newNode.tagName(tagname);
             newNode.text("<" + tagname + ">");
@@ -34,16 +48,24 @@ class Bs4cpp {
         } 
             
         auto find_all (string requiredTagName, int limit = -1) {
+            requiredTagName = lower(requiredTagName);
             vector<PageElement> filteredNodes;
             filterNodes(requiredTagName, filteredNodes, limit);
             return filteredNodes;
         }
+        
+        auto find (string requiredTagName) {
+            requiredTagName = lower(requiredTagName);
+            return find_all(requiredTagName, 1)[0];
+        }
 
-        auto find (string requiredTagName, int limit = 1) {
+        auto find (string requiredTagName, int limit) {
+            requiredTagName = lower(requiredTagName);
             return find_all(requiredTagName, limit);
         }
 
         void filterNodes(string requiredTagName, auto & filteredNodes, int limit) {
+            requiredTagName = lower(requiredTagName);
             for (auto element: contents()) {
                 if (element.name() == requiredTagName) {
                     filteredNodes.push_back(element);

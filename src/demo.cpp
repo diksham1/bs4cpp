@@ -1,6 +1,7 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include "soup.h"
 
 using namespace std;
 
@@ -21,6 +22,31 @@ int main(int argc, char *argv[]) {
     
     string fileData = readFile(fileName);
     
+    auto soup = Bs4cpp(fileData);
+        
+    auto allContents = soup.contents();
+
+    for (auto element: allContents) {
+        cout << element << endl; 
+    }
+
+    soup.prettify();
+
+    auto allPtags = soup.find_all("p");
+
+    for (auto ptag: allPtags) {
+        cout << ptag.name() << endl;
+    } 
+
+    auto body = soup.find("body");
     
+    cout << body.parent() << endl;
+
+    auto descendantList = body.descendants();      
+
+    for (auto x: descendantList) {
+        cout << x << endl;
+    }
+
     return 0;
 }

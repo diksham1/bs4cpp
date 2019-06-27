@@ -1,3 +1,5 @@
+#include <cctype>
+
 class PageElement { 
     htmlcxx::HTML::Node nodeElement;   
     tree<htmlcxx::HTML::Node>::iterator myIterator;
@@ -20,12 +22,17 @@ class PageElement {
         std::map<std::string, std::string> attrs() {
             return  myIterator -> attributes();
         }
-
+        
+        std::string text() {
+            return myIterator -> text();
+        }
+    
         void clear() {
             myDom -> erase_children(myIterator);
         }
         
         void setAttr(std::string key, std::string value) {
+            key = lower(key);
             auto attrs = myIterator -> attributes();
             attrs[key] = value;
         }
