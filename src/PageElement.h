@@ -67,23 +67,32 @@ class PageElement {
         }
         
         PageElement next_sibling() {
-            auto prevSiblIterator = myDom -> next_sibling(myIterator);
-            if (prevSiblIterator == NULL) {
-                prevSiblIterator = myIterator;
+            auto nextSiblIterator = myDom -> next_sibling(myIterator);
+            if (nextSiblIterator == NULL) {
+                nextSiblIterator = myIterator;
             }
-            return PageElement(*prevSiblIterator, prevSiblIterator, myDom);
+            return PageElement(*nextSiblIterator, nextSiblIterator, myDom);
         }
 
         std::vector <PageElement> descendants() {
             std::vector <PageElement> descendantList;
-            auto siblIterator = myDom -> begin(myIterator);
-            auto myChildCount = myDom -> number_of_children(myIterator);
-            for (auto i = 0; i < myChildCount; i++) {
-                PageElement myChild (*siblIterator, siblIterator, myDom);
-                descendantList.push_back(myChild);
-                siblIterator++;
-            } 
+            int num = myDom -> size(myIterator) - 1;
+            auto currentIterator = myIterator;
+            currentIterator++;
+            
+            while (num--) {
+               descendantList.push_back(PageElement(*currentIterator, currentIterator, myDom));
+               currentIterator++;
+            }
             return descendantList;
+        } 
+        
+        PageElement last_descendant() {
+            auto descendantList = descendants();
+            if (descendantList.size()) {
+                return descendantList.back();
+            }
+            return PageElement(nodeElement, myIterator, myDom);
         }          
         
 };
