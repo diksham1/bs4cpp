@@ -24,3 +24,4 @@ As of now, the functions completed are :
     - new_tag function
     - clear function 
     - unwrap function
+    - replace_with function

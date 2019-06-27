@@ -149,7 +149,25 @@ class PageElement {
         void insert (auto position, PageElement myNewChild) {
             auto newChildPosition = myDom -> child(myIterator, position);
             myDom -> insert (newChildPosition, myNewChild.nodeElement);
-        } 
+        }
+
+        std::string replace_with (std::string targetString) {
+            std::string replacedString = myIterator -> text();
+            (*myIterator).text(targetString);
+            (*myIterator).tagName(targetString);
+            return replacedString;
+        }
+
+        PageElement replace_with (PageElement targetElement) {
+            PageElement replacedElement = *this;
+            (*myIterator).text(targetElement.nodeElement.text());
+            (*myIterator).tagName(targetElement.nodeElement.tagName());
+            (*myIterator).closingText(targetElement.nodeElement.closingText());
+            (*myIterator).parseAttributes();
+            return replacedElement;
+        }
+
+       
         
 };
 
