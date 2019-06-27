@@ -29,6 +29,11 @@ class PageElement {
             myDom -> append_child (myIterator, newnode);
         }
         
+        void extend (std::vector <std::string> children) {
+            for (auto child: children) {
+                append(child);
+            }
+        }
 
         bool isTag() {
             return nodeElement.isTag();
