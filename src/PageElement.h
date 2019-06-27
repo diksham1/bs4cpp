@@ -4,15 +4,23 @@ class PageElement {
     tree<htmlcxx::HTML::Node>* myDom;
 
     public:    
-        std::map<std::string, std::string> attrs;  
-        
+       
         PageElement(htmlcxx::HTML::Node & node, auto myIterator, auto myDom) {
             this -> nodeElement = node;
             this -> myIterator = myIterator;
             this -> myDom = myDom;
-            nodeElement.parseAttributes();
-            attrs = (nodeElement).attributes();
+            node.parseAttributes(); 
         }
+
+        std::map<std::string, std::string> attrs() {
+            return  myIterator -> attributes();
+        }
+        
+        void setAttr(std::string key, std::string value) {
+            auto attrs = myIterator -> attributes();
+            attrs[key] = value;
+        }
+        
 
         bool isTag() {
             return nodeElement.isTag();
