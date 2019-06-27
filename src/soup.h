@@ -17,6 +17,21 @@ class Bs4cpp {
             ParserDom parser;
             this -> dom = parser.parseTree(html);
         } 
+
+        PageElement new_tag (string tagname) {
+            Node newNode;
+            newNode.tagName(tagname);
+            newNode.text("<" + tagname + ">");
+            newNode.closingText("");
+            vector <string> emptyTags = {"area", "base", "br", "col", "command", "embed", "hr", "img", "input","keygen", "link", "meta", "param", "source", "track", "wbr"};
+            if (std::find(emptyTags.begin(), emptyTags.end(), tagname) == emptyTags.end()) {
+                string closetext = "</" + tagname + ">";
+                newNode.closingText(closetext);
+            }
+            newNode.isTag(true);
+            
+            return PageElement(newNode, dom.end(), &dom);
+        } 
             
         auto find_all (string requiredTagName, int limit = -1) {
             vector<PageElement> filteredNodes;

@@ -21,15 +21,27 @@ class PageElement {
             attrs[key] = value;
         }
 
+        void append (PageElement myNewTag) {
+            auto it = myDom -> append_child (myIterator, myNewTag.nodeElement);
+            myNewTag.myIterator = it;
+        }
+
         void append (std::string myNewChild) {
             htmlcxx::HTML::Node newnode;
             newnode.text(myNewChild);
             newnode.closingText("");
-            newnode.tagName("");
+            newnode.tagName(myNewChild);
+            newnode.isTag(false);
             myDom -> append_child (myIterator, newnode);
         }
         
         void extend (std::vector <std::string> children) {
+            for (auto child: children) {
+                append(child);
+            }
+        }
+
+        void extend (std::vector <PageElement> children) {
             for (auto child: children) {
                 append(child);
             }
@@ -121,7 +133,7 @@ class PageElement {
             htmlcxx::HTML::Node newnode;
             newnode.text(myNewChild);
             newnode.closingText("");
-            newnode.tagName("");
+            newnode.tagName(myNewChild);
             myDom -> insert( newChildPosition, newnode);
         }    
         

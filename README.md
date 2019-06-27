@@ -19,5 +19,6 @@ As of now, the functions completed are :
     - descendants and last_descendant function 
     - strings function
     - get_text function
-    - append and extend function
+    - append and extend function (both strings and tags)
     - insert function (insert at index)
+    - new_tag function 
