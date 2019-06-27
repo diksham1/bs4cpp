@@ -10,12 +10,13 @@ I will be using the HTMLCXX parser and the tree.h API. I'll implement the major 
 As of now, the functions completed are :
 
     - Find_all and find function
-    - The contents member variable
+    - The contents function
     - The prettify function
     - The parent function 
     - Attributes dictionary ready
     - previous_sibling and next_sibling 
     - previous_element and next_element
     - descendants and last_descendant function 
-    - all_strings function and strings member variable
+    - strings function
     - get_text function
+    - append function
