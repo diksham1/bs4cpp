@@ -20,3 +20,4 @@ As of now, the functions completed are :
     - strings function
     - get_text function
     - append and extend function
+    - insert function (insert at index)

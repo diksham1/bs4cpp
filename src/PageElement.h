@@ -114,7 +114,16 @@ class PageElement {
                 return descendantList.back();
             }
             return PageElement(nodeElement, myIterator, myDom);
-        }          
+        }      
+
+        void insert (auto position, std::string myNewChild) {
+            auto newChildPosition = myDom -> child(myIterator, position);
+            htmlcxx::HTML::Node newnode;
+            newnode.text(myNewChild);
+            newnode.closingText("");
+            newnode.tagName("");
+            myDom -> insert( newChildPosition, newnode);
+        }    
         
 };
 
