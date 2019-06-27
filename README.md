@@ -19,4 +19,4 @@ As of now, the functions completed are :
     - descendants and last_descendant function 
     - strings function
     - get_text function
-    - append function
+    - append and extend function
