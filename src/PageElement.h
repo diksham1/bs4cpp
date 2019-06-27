@@ -11,6 +11,11 @@ class PageElement {
             this -> myDom = myDom;
             node.parseAttributes(); 
         }
+    
+        void unwrap() {
+            myDom -> flatten(myIterator);
+            myDom -> erase (myIterator);
+        }
 
         std::map<std::string, std::string> attrs() {
             return  myIterator -> attributes();

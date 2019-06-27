@@ -23,3 +23,4 @@ As of now, the functions completed are :
     - insert function (insert at index) (both strings and tags)
     - new_tag function
     - clear function 
+    - unwrap function
