@@ -135,7 +135,12 @@ class PageElement {
             newnode.closingText("");
             newnode.tagName(myNewChild);
             myDom -> insert( newChildPosition, newnode);
-        }    
+        }   
+
+        void insert (auto position, PageElement myNewChild) {
+            auto newChildPosition = myDom -> child(myIterator, position);
+            myDom -> insert (newChildPosition, myNewChild.nodeElement);
+        } 
         
 };
 

@@ -20,5 +20,5 @@ As of now, the functions completed are :
     - strings function
     - get_text function
     - append and extend function (both strings and tags)
-    - insert function (insert at index)
+    - insert function (insert at index) (both strings and tags)
     - new_tag function 
