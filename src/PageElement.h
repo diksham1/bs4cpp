@@ -20,6 +20,14 @@ class PageElement {
             auto attrs = myIterator -> attributes();
             attrs[key] = value;
         }
+
+        void append (std::string myNewChild) {
+            htmlcxx::HTML::Node newnode;
+            newnode.text(myNewChild);
+            newnode.closingText("");
+            newnode.tagName("");
+            myDom -> append_child (myIterator, newnode);
+        }
         
 
         bool isTag() {

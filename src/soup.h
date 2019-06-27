@@ -12,14 +12,10 @@ using namespace htmlcxx::HTML;
 class Bs4cpp {
     public:
         tree <Node> dom;
-        vector <PageElement> contents;
-        vector <string> strings;     
 
         Bs4cpp(string html) {
             ParserDom parser;
             this -> dom = parser.parseTree(html);
-            this -> contents = getContents();
-            this -> strings = all_strings();
         } 
             
         auto find_all (string requiredTagName, int limit = -1) {
@@ -33,7 +29,7 @@ class Bs4cpp {
         }
 
         void filterNodes(string requiredTagName, auto & filteredNodes, int limit) {
-            for (auto element: contents) {
+            for (auto element: contents()) {
                 if (element.name() == requiredTagName) {
                     filteredNodes.push_back(element);
                 }
@@ -45,7 +41,7 @@ class Bs4cpp {
             this -> prettyprint(space, this -> dom);
         }     
  
-        vector<PageElement> getContents () {
+        vector<PageElement> contents () {
             vector<PageElement> allElements;
             auto startptr = dom.begin();
             auto endptr = dom.end();
@@ -60,18 +56,18 @@ class Bs4cpp {
             return allElements;
         }
  
-        vector <string> all_strings () {
-            vector <string> strings;
-            for (auto element: contents) {
+        vector <string> strings () {
+            vector <string> stringList;
+            for (auto element: contents()) {
                 if (element.isTag())    continue;
-                strings.push_back(element.name());
+                stringList.push_back(element.name());
             }
-            return strings;
+            return stringList;
         }
 
         string get_text() {
             string allText = "";
-            for (auto str: strings) {
+            for (auto str: strings()) {
                 allText += str;
             } 
             return allText;
