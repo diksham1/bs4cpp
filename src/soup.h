@@ -14,11 +14,12 @@ class Bs4cpp {
         tree <Node> dom;
 
         Bs4cpp(string html) {
+            html = rmWhitespace(html);
             ParserDom parser;
             this -> dom = parser.parseTree(html);
             auto start = dom.begin();
             auto end = dom.end();
-            while (start != end) {
+            while (start != dom.end()) {
                 if (start -> isTag()) {
                     start -> text(lower(trimWhitespace(start -> text())));
                     start -> tagName(lower(trimWhitespace(start -> tagName())));
@@ -29,7 +30,7 @@ class Bs4cpp {
                 start -> closingText(lower(start -> closingText()));
                 start++;
             }
-        } 
+        }
 
         PageElement new_tag (string tagname) {
             tagname = lower(tagname);

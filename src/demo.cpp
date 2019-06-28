@@ -38,15 +38,25 @@ int main(int argc, char *argv[]) {
         cout << ptag.name() << endl;
     } 
 
-    auto body = soup.find("body");
-    
-    cout << body.parent() << endl;
+    auto secondptag = allPtags[1];
 
-    auto descendantList = body.descendants();      
+    auto descendantList = secondptag.descendants();      
+    cout << "descendants are " << endl;
 
     for (auto x: descendantList) {
         cout << x << endl;
     }
+
+    auto newtag = soup.new_tag("br");
+    
+    cout <<"Created a new tag: " << newtag << endl;
+  
+    auto bodyTag = soup.find("body");
+    cout << "Appending the tag: " << endl;
+
+    bodyTag.append(newtag);
+
+    soup.prettify();    
 
     return 0;
 }
