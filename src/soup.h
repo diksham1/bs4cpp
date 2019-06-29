@@ -10,9 +10,10 @@ using namespace htmlcxx::HTML;
 
 
 class Bs4cpp {
-    public:
         tree <Node> dom;
 
+        public:
+    
         Bs4cpp(string html) {
             html = rmWhitespace(html);
             ParserDom parser;
@@ -70,6 +71,7 @@ class Bs4cpp {
             for (auto element: contents()) {
                 if (element.name() == requiredTagName) {
                     filteredNodes.push_back(element);
+                    limit--;
                 }
             }
         }

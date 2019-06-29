@@ -9,19 +9,36 @@ I will be using the HTMLCXX parser and the tree.h API. I'll implement the major 
 
 As of now, the functions completed are :
 
-    - Find_all and find function
-    - The contents function
-    - The prettify function
-    - The parent function 
-    - Attributes dictionary ready
-    - previous_sibling and next_sibling 
-    - previous_element and next_element
-    - descendants and last_descendant function 
-    - strings function
-    - get_text function
-    - append and extend function (both strings and tags)
-    - insert function (insert at index) (both strings and tags)
-    - new_tag function
-    - clear function 
-    - unwrap function
-    - replace_with function
+    PageElement:
+        
+    - Constructor
+    - unwrap
+    - attrs
+    - text
+    - clear
+    - setAttr
+    - append (both string and Tag)
+    - extend
+    - isTag
+    - name
+    - parent
+    - next_element
+    - previous_element
+    - previous_sibling
+    - next_sibling
+    - descendants
+    - last_descendant
+    - insert (both string and tag)
+    - replace_with (both string and tag)
+    
+    Soup:   
+    
+    - constructor
+    - new_tag
+    - find_all
+    - find
+    - prettify
+    - contents
+    - strings
+    - get_text
+    
